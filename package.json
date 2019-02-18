@@ -1,0 +1,32 @@
+{
+    "name": "teacup.js",
+    "version": "0.0.1",
+    "description": "Cache javascript & css files in localStorage",
+    "main": "dist/teacup.min.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SukkaW/teacup.js.git"
+    },
+    "keywords": [
+        "localstorage",
+        "cache",
+        "teacup.js"
+    ],
+    "author": "SukkaW (https://skk.moe)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/SukkaW/teacup.js/issues"
+    },
+    "homepage": "https://github.com/SukkaW/teacup.js#readme",
+    "devDependencies": {
+        "@babel/core": "^7.3.3",
+        "@babel/preset-env": "^7.3.1",
+        "gulp": "^4.0.0",
+        "gulp-babel": "^8.0.0",
+        "gulp-header": "^2.0.7",
+        "gulp-uglify": "^3.0.1"
+    }
+}
