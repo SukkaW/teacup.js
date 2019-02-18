@@ -62,7 +62,45 @@
         }
     };
 
-
+    /**
+     * get - 封装 XHR GET
+     *
+     * @param {string} url
+     * @param {string} timeout
+     * @param {boolean} async
+     * @param {function} success
+     * @param {function} error
+     *
+     * Example:
+        get({
+            'http://localhost:3000/getData',
+            4000,
+            true,
+            (res) => {
+                console.log(res)
+            },
+            () => {}
+        })
+     */
+    const get = (url, success, error) => {
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', encodeURI(url), true);
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
+                success(xhr.responseText)
+            } else {
+                loadError();
+            }
+        }
+        xhr.timeout = 4500;
+        xhr.ontimeout = (e) => {
+            error(e);
+        };
+        xhr.onerror = (e) => {
+            error(e);
+        };
+        xhr.send();
+    }
 
     window.teacup = {
         prefix: 'teacup:'
