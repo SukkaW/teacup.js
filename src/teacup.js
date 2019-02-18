@@ -140,13 +140,14 @@
 
     teacup.css = (name, url, version) => {
         try {
+            version = version || '';
             if (getLS(`${teacup.prefix}:css:${name}`) && getLS(`${teacup.prefix}:css:${name}`).indexOf(`/*${url}:${version}*/`) !== -1) {
                 importStyle(name, getLS(`${teacup.prefix}:css:${name}`))
             } else {
                 removeLS(`${teacup.prefix}:css:${name}`);
                 get(url, (resp) => {
                         importStyle(name, resp);
-                        setLS(`${teacup.prefix}:css:${name}`, resp);
+                        setLS(`${teacup.prefix}:css:${name}`, `/*${url}:${version}*/${resp}`);
                     },
                     (err) => {
                         loadCssFallback(url, name);
@@ -156,5 +157,7 @@
         } catch (err) {
             loadCssFallback(url, name);
         }
-    }
+    };
+
+    
 })();

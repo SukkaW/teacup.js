@@ -13,3 +13,5 @@ _build
 public
 
 src/index.html
+
+src/test*
