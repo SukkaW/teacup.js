@@ -103,7 +103,7 @@
     }
 
     window.teacup = {
-        prefix: 'teacup:'
+        prefix: 'teacup'
     };
 
     teacup.clean = () => {
@@ -113,11 +113,25 @@
                 keys.push(LS.key(i));
             };
             keys.forEach((key) => {
-                if (key.indexOf(teacup.prefix) !== -1) {
+                if (key.indexOf(`${teacup.prefix}:`) !== -1) {
                     removeLS(key);
                 }
             })
         } catch (err) {
         }
     };
+
+    let loadJsFallback = (url, name) => {
+        let script = document.createElement('script');
+        script.src = url;
+        script.type = 'text/javascript';
+        document.body.appendChild(script);
+    }
+
+    let loadCssFallback = (url, name) => {
+        let link = document.createElement('link');
+        link.src = url;
+        link.type = 'text/javascript';
+        document.body.appendChild(link);
+    }
 })();
