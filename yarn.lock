@@ -9,7 +9,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@^7.3.3":
+"@babel/core@7.3.3":
   version "7.3.3"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.3.3.tgz#d090d157b7c5060d05a05acaebc048bd2b037947"
   integrity sha512-w445QGI2qd0E0GlSnq6huRZWPMmQGCp5gd5ZWS4hagn0EiwzxD5QMFkpchyusAyVC1n27OKXzQ0/88aVU9n4xQ==
@@ -510,7 +510,7 @@
     "@babel/helper-regex" "^7.0.0"
     regexpu-core "^4.1.3"
 
-"@babel/preset-env@^7.3.1":
+"@babel/preset-env@7.3.1":
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.3.1.tgz#389e8ca6b17ae67aaf9a2111665030be923515db"
   integrity sha512-FHKrD6Dxf30e8xgHQO0zJZpUPfVZg+Xwgz5/RdSWCbza9QLNk4Qbp40ctRoqDxml3O8RMzB1DU55SXeDG6PqHQ==
@@ -1501,7 +1501,7 @@ graceful-fs@^4.0.0, graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
   integrity sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
 
-gulp-babel@^8.0.0:
+gulp-babel@8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/gulp-babel/-/gulp-babel-8.0.0.tgz#e0da96f4f2ec4a88dd3a3030f476e38ab2126d87"
   integrity sha512-oomaIqDXxFkg7lbpBou/gnUkX51/Y/M2ZfSjL2hdqXTAlSWZcgZtd2o0cOH0r/eE8LWD0+Q/PsLsr2DKOoqToQ==
@@ -1535,7 +1535,7 @@ gulp-cli@^2.0.0:
     v8flags "^3.0.1"
     yargs "^7.1.0"
 
-gulp-header@^2.0.7:
+gulp-header@2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/gulp-header/-/gulp-header-2.0.7.tgz#07505740eb432e8d2bb2af68744858dabaaf491b"
   integrity sha512-qppGkYGQZnt/mRJiiR5wYZIUwNUn47Xpg4+6tHYDVeAW5IDLbHBQwbw7axfMLWGE+gKQpB+yXLeslHMw1/Haog==
@@ -1545,12 +1545,12 @@ gulp-header@^2.0.7:
     map-stream "0.0.7"
     through2 "^2.0.0"
 
-gulp-rename@^1.4.0:
+gulp-rename@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.4.0.tgz#de1c718e7c4095ae861f7296ef4f3248648240bd"
   integrity sha512-swzbIGb/arEoFK89tPY58vg3Ok1bw+d35PfUNwWqdo7KM4jkmuGA78JiDNqR+JeZFaeeHnRg9N7aihX3YPmsyg==
 
-gulp-uglify@^3.0.1:
+gulp-uglify@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/gulp-uglify/-/gulp-uglify-3.0.1.tgz#8d3eee466521bea6b10fd75dff72adf8b7ea2d97"
   integrity sha512-KVffbGY9d4Wv90bW/B1KZJyunLMyfHTBbilpDvmcrj5Go0/a1G3uVpt+1gRBWSw/11dqR3coJ1oWNTt1AiXuWQ==
@@ -1564,7 +1564,7 @@ gulp-uglify@^3.0.1:
     uglify-js "^3.0.5"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp@^4.0.0:
+gulp@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/gulp/-/gulp-4.0.0.tgz#95766c601dade4a77ed3e7b2b6dc03881b596366"
   integrity sha1-lXZsYB2t5Kd+0+eyttwDiBtZY2Y=
