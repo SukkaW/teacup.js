@@ -67,29 +67,27 @@
      *
      * @param {string} url
      * @param {string} timeout
-     * @param {boolean} async
      * @param {function} success
      * @param {function} error
      *
      * Example:
-        get({
+        get(
             'http://localhost:3000/getData',
             4000,
-            true,
             (res) => {
                 console.log(res)
             },
             () => {}
-        })
+        )
      */
     const get = (url, success, error) => {
         let xhr = new XMLHttpRequest()
         xhr.open('GET', encodeURI(url), true);
         xhr.onload = () => {
             if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-                success(xhr.responseText)
+                success(xhr.responseText);
             } else {
-                loadError();
+                error(e);
             }
         }
         xhr.timeout = 4500;
@@ -126,12 +124,37 @@
         script.src = url;
         script.type = 'text/javascript';
         document.body.appendChild(script);
-    }
+    };
 
     let loadCssFallback = (url, name) => {
         let link = document.createElement('link');
-        link.src = url;
-        link.type = 'text/javascript';
-        document.body.appendChild(link);
+        link.rel = 'stylesheet';
+        link.href = url;
+        link.type = 'text/css';
+        document.head.appendChild(link);
+    };
+
+    let importStyle = (name, code) => {
+        document.getElementById(name).appendChild(document.createTextNode(code));
+    }
+
+    teacup.css = (name, url, version) => {
+        try {
+            if (getLS(`${teacup.prefix}:css:${name}`) && getLS(`${teacup.prefix}:css:${name}`).indexOf(`/*${url}:${version}*/`) !== -1) {
+                importStyle(name, getLS(`${teacup.prefix}:css:${name}`))
+            } else {
+                removeLS(`${teacup.prefix}:css:${name}`);
+                get(url, (resp) => {
+                        importStyle(name, resp);
+                        setLS(`${teacup.prefix}:css:${name}`, resp);
+                    },
+                    (err) => {
+                        loadCssFallback(url, name);
+                    }
+                )
+            }
+        } catch (err) {
+            loadCssFallback(url, name);
+        }
     }
 })();
