@@ -16,7 +16,7 @@ let jsBanner = ['/*!',
 let configs = {
     browsers: [
         'last 2 versions',
-        'IE >= 8',
+        'IE >= 10',
         'not dead',
         'not op_mini all'
     ]
