@@ -81,23 +81,25 @@
         )
      */
     const get = (url, success, error) => {
-        let xhr = new XMLHttpRequest()
-        xhr.open('GET', encodeURI(url), true);
-        xhr.onload = () => {
-            if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) {
-                success(xhr.responseText);
-            } else {
-                error(e);
-            }
+        try {
+            let xhr = new XMLHttpRequest()
+            xhr.open('GET', encodeURI(url), true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4) {
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                        if (xhr.response != '') {
+                            success(xhr.responseText);
+                            return;
+                        }
+                    };
+                    error();
+                }
+            };
+            xhr.timeout = 6000;
+            xhr.send(null);
+        } catch (err) {
+            error(err);
         }
-        xhr.timeout = 4500;
-        xhr.ontimeout = (e) => {
-            error(e);
-        };
-        xhr.onerror = (e) => {
-            error(e);
-        };
-        xhr.send();
     }
 
     window.teacup = {
@@ -123,7 +125,7 @@
         let script = document.createElement('script');
         script.src = url;
         script.type = 'text/javascript';
-        document.body.appendChild(script);
+        document.head.appendChild(script);
     };
 
     let loadCssFallback = (url, name) => {
@@ -131,11 +133,23 @@
         link.rel = 'stylesheet';
         link.href = url;
         link.type = 'text/css';
-        document.head.appendChild(link);
+        let root = document.getElementsByTagName('script')[0];
+        root.parentNode.insertBefore(style, link)
     };
 
     let importStyle = (name, code) => {
-        document.getElementById(name).appendChild(document.createTextNode(code));
+        let style = document.createElement('style');
+        style.id = name;
+        style.appendChild(document.createTextNode(code));
+        let root = document.getElementsByTagName('script')[0];
+        root.parentNode.insertBefore(style, root);
+    }
+
+    let importScript = (name, code) => {
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.appendChild(document.createTextNode(code));
+        document.head.appendChild(script);
     }
 
     teacup.css = (name, url, version) => {
@@ -159,5 +173,24 @@
         }
     };
 
-    
+    teacup.js = (name, url, version) => {
+        try {
+            version = version || '';
+            if (getLS(`${teacup.prefix}:js:${name}`) && getLS(`${teacup.prefix}:js:${name}`).indexOf(`/*${url}:${version}*/`) !== -1) {
+                importScript(name, getLS(`${teacup.prefix}:js:${name}`))
+            } else {
+                removeLS(`${teacup.prefix}:js:${name}`);
+                get(url, (resp) => {
+                        importScript(name, resp);
+                        setLS(`${teacup.prefix}:js:${name}`, `/*${url}:${version}*/${resp}`);
+                    },
+                    (err) => {
+                        loadJsFallback(url, name);
+                    }
+                )
+            }
+        } catch (err) {
+            loadJsFallback(url, name);
+        }
+    }
 })();
