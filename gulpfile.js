@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
 const header = require('gulp-header');
+const rename = require('gulp-rename');
 const pkg = require('./package.json');
 
 let jsBanner = ['/*!',
@@ -34,6 +35,7 @@ gulp.task('minify-js', () => {
             keep_fnames: false
         }))
         .pipe(header(jsBanner, { pkg: pkg }))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('dist'));
 });
 
